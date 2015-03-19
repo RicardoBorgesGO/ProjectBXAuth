@@ -31,8 +31,9 @@ public class Role {
     private RoleEnum roleEnum;
 
     @ManyToMany
-    @JoinTable (name = "USER_ROLES",
-    inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")})
+    @JoinTable (name = "USUARIO_ROLES",
+    joinColumns = {@JoinColumn(name = "USER_ID")},
+    inverseJoinColumns = {@JoinColumn(name = "ROLES_ID", referencedColumnName = "ID")})
     private List<Usuario> users;
 
 	public int getId() {

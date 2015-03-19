@@ -41,7 +41,7 @@ public class Usuario {
 //	private Site site;
 
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(mappedBy = "users")
 	private List<Role> roles;
 
 	@JsonIgnore
