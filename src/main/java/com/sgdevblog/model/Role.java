@@ -33,7 +33,7 @@ public class Role {
     @ManyToMany
     @JoinTable (name = "USER_ROLES",
     inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")})
-    private List<User> users;
+    private List<Usuario> users;
 
 	public int getId() {
 		return id;

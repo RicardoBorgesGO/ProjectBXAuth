@@ -20,7 +20,14 @@
 
 	<dependencies>
 
-	<!-- Spring -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -132,18 +139,18 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.5.Final</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901-1.jdbc4</version>
 		</dependency>
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>mysql</groupId> -->
-<!-- 			<artifactId>mysql-connector-java</artifactId> -->
-<!-- 			<version>5.1.26</version> -->
-<!-- 		</dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>mysql</groupId> -->
+		<!-- <artifactId>mysql-connector-java</artifactId> -->
+		<!-- <version>5.1.26</version> -->
+		<!-- </dependency> -->
 
 		<!-- Test -->
 		<dependency>
@@ -171,7 +178,7 @@
 		</dependency>
 
 	</dependencies>
-	
+
 	<build>
 		<finalName>stateless-session</finalName>
 		<plugins>
@@ -179,19 +186,19 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>properties-maven-plugin</artifactId>
 				<version>1.0-alpha-2</version>
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase>initialize</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>read-project-properties</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<files> -->
-<!-- 								<file>build.properties</file> -->
-<!-- 							</files> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <phase>initialize</phase> -->
+				<!-- <goals> -->
+				<!-- <goal>read-project-properties</goal> -->
+				<!-- </goals> -->
+				<!-- <configuration> -->
+				<!-- <files> -->
+				<!-- <file>build.properties</file> -->
+				<!-- </files> -->
+				<!-- </configuration> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
 			</plugin>
 
 			<plugin>
@@ -290,25 +297,25 @@
 					<password>${db.password}</password>
 					<skip>${maven.test.skip}</skip>
 				</configuration>
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>create-and-update-schema</id> -->
-<!-- 						<phase>generate-test-resources</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>execute</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<autocommit>true</autocommit> -->
-<!-- 							<orderFile>ascending</orderFile> -->
-<!-- 							<fileset> -->
-<!-- 								<basedir>${basedir}/sql</basedir> -->
-<!-- 								<includes> -->
-<!-- 									<include>test-db.sql</include> -->
-<!-- 								</includes> -->
-<!-- 							</fileset> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
+				<!-- <executions> -->
+				<!-- <execution> -->
+				<!-- <id>create-and-update-schema</id> -->
+				<!-- <phase>generate-test-resources</phase> -->
+				<!-- <goals> -->
+				<!-- <goal>execute</goal> -->
+				<!-- </goals> -->
+				<!-- <configuration> -->
+				<!-- <autocommit>true</autocommit> -->
+				<!-- <orderFile>ascending</orderFile> -->
+				<!-- <fileset> -->
+				<!-- <basedir>${basedir}/sql</basedir> -->
+				<!-- <includes> -->
+				<!-- <include>test-db.sql</include> -->
+				<!-- </includes> -->
+				<!-- </fileset> -->
+				<!-- </configuration> -->
+				<!-- </execution> -->
+				<!-- </executions> -->
 			</plugin>
 		</plugins>
 	</build>

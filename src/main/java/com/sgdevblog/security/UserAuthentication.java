@@ -21,7 +21,7 @@ public class UserAuthentication implements Authentication {
 
 	@Override
 	public String getName() {
-		return session.getUser().getUserName();
+		return session.getUser().getLogin();
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class UserAuthentication implements Authentication {
 			return null;
 		}
 
-		return session.getUser().getUserName();
+		return session.getUser().getLogin();
 	}
 
 	@Override

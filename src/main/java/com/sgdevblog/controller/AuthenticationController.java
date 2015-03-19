@@ -18,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.sgdevblog.model.User;
+import com.sgdevblog.model.Site;
+import com.sgdevblog.model.Usuario;
 import com.sgdevblog.security.UserAuthentication;
 import com.sgdevblog.security.UserSession;
 import com.sgdevblog.security.annotation.SessionUpdate;
@@ -49,21 +48,59 @@ public class AuthenticationController {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "login")
+//	@RequestMapping(method = RequestMethod.POST, value = "login")
+//	@SessionUpdate
+//	public String login(@RequestParam(value="login") String login, @RequestParam(value="password") String password, @RequestParam(value="siteCode") String site) throws IOException{
+//
+//		if(StringUtils.isEmpty(login) || StringUtils.isEmpty(password)){
+//			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Missing login and password");
+//		}
+//
+//		logger.info("login user(" + login + "), siteCode(" + site + ").");
+//
+//		Usuario user = authService.login(site, login, password);
+//		if(user!=null){
+//			SecurityContext securityContext = SecurityContextHolder.getContext();
+//			UserSession userSession = new UserSession();
+//			userSession.setSite(user.getSite());
+//			userSession.setUser(user);
+//			securityContext.setAuthentication(new UserAuthentication(userSession));
+//		}else{
+//			throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED, "Invalid login or password");
+//		}
+//
+//		return "index";
+//	}
+	
+	/**
+	 * Temporary created to simulate site selection(multi-tenancy). To be remove once multi-tenancy is implemented.
+	 * @param login
+	 * @param password
+	 * @param site
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "/authentication")
 	@SessionUpdate
-	public String login(@RequestParam(value="login") String login, @RequestParam(value="password") String password, @RequestParam(value="siteCode") String site) throws IOException{
+	public String login2(Usuario usuario) throws IOException{
 
-		if(StringUtils.isEmpty(login) || StringUtils.isEmpty(password)){
+		if(StringUtils.isEmpty(usuario.getLogin()) || StringUtils.isEmpty(usuario.getPassword())){
 			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Missing login and password");
 		}
+//		Site site = new Site();
+//		site.setName("localhost");
+		
+//		usuario.setSite(site);
 
-		logger.info("login user(" + login + "), siteCode(" + site + ").");
+		logger.info("login user(" + usuario.getLogin() + ").");
 
-		User user = authService.login(site, login, password);
+		Usuario user = authService.login(usuario.getLogin(), usuario.getPassword());
 		if(user!=null){
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			UserSession userSession = new UserSession();
-			userSession.setSite(user.getSite());
+//			userSession.setSite(user.getSite());
 			userSession.setUser(user);
 			securityContext.setAuthentication(new UserAuthentication(userSession));
 		}else{
@@ -90,7 +127,7 @@ public class AuthenticationController {
 		}
 
 		logger.info("User(" + securityContext.getAuthentication().getPrincipal() + ") is redirected to login.");
-		return "login";
+		return "login2";
 	}
 
 	/**

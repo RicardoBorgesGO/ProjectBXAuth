@@ -5,21 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="sites")
+@Table(name="SITES")
 public class Site {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SITE_SQ")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "SITE_SQ", sequenceName = "SITE_SEQ")
 	private int id;
 
-	@Column(name="display_name")
+	@Column(name="NOME")
 	private String name;
 
-	@Column(name="site_code")
+	@Column(name="CODIGO_SITE")
 	private String siteCode;
 
 	public int getId() {

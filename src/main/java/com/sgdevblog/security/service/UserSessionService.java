@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sgdevblog.dao.UserDAO;
-import com.sgdevblog.model.User;
+import com.sgdevblog.model.Usuario;
 import com.sgdevblog.security.SessionCookieData;
 import com.sgdevblog.security.UserSession;
 
@@ -24,7 +24,7 @@ public class UserSessionService {
 			return null;
 		}
 
-		User user = userDao.getUser(sessionData.getUserId());
+		Usuario user = userDao.getUser(sessionData.getUserId());
 
 		if(user==null) {
 			return null;
@@ -32,7 +32,7 @@ public class UserSessionService {
 
 		user.getUserRoles();
 		session.setUser(user);
-		session.setSite(user.getSite());
+//		session.setSite(user.getSite());
 
 		return session;
 	}

@@ -1,7 +1,5 @@
 package com.sgdevblog.security.util;
 
-import static org.junit.Assert.*;
-
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 

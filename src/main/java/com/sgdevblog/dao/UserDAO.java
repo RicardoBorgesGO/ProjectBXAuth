@@ -7,12 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sgdevblog.model.User;
+import com.sgdevblog.model.Usuario;
 
 @Repository
 @Transactional
@@ -25,14 +23,13 @@ public class UserDAO {
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked") //Query.getResultList, does not support generic
-	public User getUser(String siteCode, String userName) {
-		String sql = "SELECT e FROM User e WHERE e.userName = :userName and e.site.siteCode = :siteCode";
+	public Usuario getUser(String userName) {
+		String sql = "SELECT e FROM Usuario e WHERE e.login = :login";
 
-
-		Query query = entityManager.createQuery(sql, User.class);
-		query.setParameter("siteCode", siteCode);
-		query.setParameter("userName", userName);
-		List<User> users = query.getResultList();
+		Query query = entityManager.createQuery(sql, Usuario.class);
+//		query.setParameter("siteCode", siteCode);
+		query.setParameter("login", userName);
+		List<Usuario> users = query.getResultList();
 
 		if (users!=null && users.size() == 1){
 			return users.get(0);
@@ -43,13 +40,13 @@ public class UserDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public User getUser(int userId){
-		User user = null;
+	public Usuario getUser(int userId){
+		Usuario user = null;
 
-		Query query = entityManager.createQuery("SELECT e FROM User e WHERE e.id = :userId", User.class);
+		Query query = entityManager.createQuery("SELECT e FROM User e WHERE e.id = :userId", Usuario.class);
 		query.setParameter("userId", userId);
 
-		List<User> users = (List<User>)query.getResultList();
+		List<Usuario> users = (List<Usuario>)query.getResultList();
 
 		if (users!=null && users.size() == 1){
 			user = users.get(0);
