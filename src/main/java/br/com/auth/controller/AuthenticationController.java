@@ -46,40 +46,6 @@ public class AuthenticationController {
 	 * @return
 	 * @throws IOException
 	 */
-//	@RequestMapping(method = RequestMethod.POST, value = "login")
-//	@SessionUpdate
-//	public String login(@RequestParam(value="login") String login, @RequestParam(value="password") String password, @RequestParam(value="siteCode") String site) throws IOException{
-//
-//		if(StringUtils.isEmpty(login) || StringUtils.isEmpty(password)){
-//			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Missing login and password");
-//		}
-//
-//		logger.info("login user(" + login + "), siteCode(" + site + ").");
-//
-//		Usuario user = authService.login(site, login, password);
-//		if(user!=null){
-//			SecurityContext securityContext = SecurityContextHolder.getContext();
-//			UserSession userSession = new UserSession();
-//			userSession.setSite(user.getSite());
-//			userSession.setUser(user);
-//			securityContext.setAuthentication(new UserAuthentication(userSession));
-//		}else{
-//			throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED, "Invalid login or password");
-//		}
-//
-//		return "index";
-//	}
-	
-	/**
-	 * Temporary created to simulate site selection(multi-tenancy). To be remove once multi-tenancy is implemented.
-	 * @param login
-	 * @param password
-	 * @param site
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws IOException
-	 */
 	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "/authentication")
 	@SessionUpdate
 	public String login2(Usuario usuario) throws IOException{

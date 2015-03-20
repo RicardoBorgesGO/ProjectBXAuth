@@ -17,22 +17,21 @@ public class UserSessionService {
 	@Autowired
 	private UsuarioDAOImpl userDao;
 
-	public UserSession getUserSession(SessionCookieData sessionData){
+	public UserSession getUserSession(SessionCookieData sessionData) {
 		UserSession session = new UserSession();
 
-		if(sessionData==null || sessionData.getUserId()==0){
+		if (sessionData == null || sessionData.getUserId() == 0) {
 			return null;
 		}
 
 		Usuario user = userDao.getUser(sessionData.getUserId());
 
-		if(user==null) {
+		if (user == null) {
 			return null;
 		}
 
 		user.getUserRoles();
 		session.setUser(user);
-//		session.setSite(user.getSite());
 
 		return session;
 	}

@@ -6,13 +6,11 @@ public class UserCredential {
 
 	private String password;
 
-	private String siteCode;
 
-	public UserCredential(String userName, String password, String siteCode) {
+	public UserCredential(String userName, String password) {
 		super();
 		this.userName = userName;
 		this.password = password;
-		this.siteCode = siteCode;
 	}
 
 	public String getUserName() {
@@ -21,10 +19,6 @@ public class UserCredential {
 
 	public String getPassword() {
 		return password;
-	}
-
-	public String getSiteCode() {
-		return siteCode;
 	}
 
 }

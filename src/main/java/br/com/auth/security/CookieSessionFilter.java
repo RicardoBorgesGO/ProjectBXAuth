@@ -55,14 +55,8 @@ public class CookieSessionFilter extends AbstractPreAuthenticatedProcessingFilte
 	protected Object getPreAuthenticatedCredentials(HttpServletRequest request) {
 		String login = request.getParameter(ParamName.LOGIN);
 		String password = request.getParameter(ParamName.PASSWORD);
-		String siteCode = extractSiteCode(request);
 
-		return new UserCredential(login, password, siteCode);
-	}
-
-	public String extractSiteCode(HttpServletRequest request) {
-		//It suppose to be domain but for localhost testing, can take from request param
-		return request.getParameter(ParamName.PASSWORD);
+		return new UserCredential(login, password);
 	}
 
 	public SecurityContext extractSecurityContext(ServletRequest request) {

@@ -5,7 +5,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.auth.dao.SiteDAO;
 import br.com.auth.dao.impl.UsuarioDAOImpl;
 import br.com.auth.entity.Usuario;
 
@@ -17,9 +16,6 @@ public class AuthenticationService {
 
 	@Autowired
 	UsuarioDAOImpl userDao;
-
-	@Autowired
-	SiteDAO siteDao;
 
 	public Usuario login(String login, String password) {
 		boolean isPasswordValid = false;

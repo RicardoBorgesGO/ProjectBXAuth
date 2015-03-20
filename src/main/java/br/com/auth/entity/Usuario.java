@@ -37,10 +37,6 @@ public class Usuario {
 	@Column(name = "password_salt")
 	private String salt;
 
-//	@ManyToOne
-//	@JoinColumn(name = "SITE_ID", nullable = false)
-//	private Site site;
-
 	@JsonIgnore
 	@ManyToMany(mappedBy = "users")
 	private List<Role> roles;
@@ -91,11 +87,4 @@ public class Usuario {
 		this.salt = salt;
 	}
 
-//	public Site getSite() {
-//		return site;
-//	}
-//
-//	public void setSite(Site site) {
-//		this.site = site;
-//	}
 }
