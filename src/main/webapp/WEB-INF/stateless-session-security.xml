@@ -7,6 +7,9 @@
            http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	
 	<http security="none" pattern="/resources/**"/>
+	
+<!-- 	<http pattern="/**/*.css" security="none" /> -->
+<!-- 	<http security="none" pattern="*.css"/> -->
 
 	<http auto-config="true" create-session="stateless">
 
@@ -19,10 +22,12 @@
 		<intercept-url pattern="/moderator.html" access="ROLE_MODERATOR" />
 		<intercept-url pattern="/site_admin.html" access="ROLE_SITE_ADMIN" />
 		<intercept-url pattern="/**" access="ROLE_AGENT,ROLE_MODERATOR,ROLE_SITE_ADMIN" />
+		<intercept-url pattern="http://localhost:8080/sgo/colaborador/index.xhtml" access="ROLE_AGENT,ROLE_MODERATOR,ROLE_SITE_ADMIN" />
+		
 		
 		<custom-filter position="PRE_AUTH_FILTER" ref="cookieSessionFilter" />
 
-        <form-login login-page="/auth/login2"
+        <form-login login-page="/auth/login"
             always-use-default-target="true" default-target-url="/"
 			authentication-failure-url="/auth/login?login_error=1" />
 

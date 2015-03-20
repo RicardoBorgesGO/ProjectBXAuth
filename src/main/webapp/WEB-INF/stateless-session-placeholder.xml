@@ -7,13 +7,8 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
 http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd">
 
-<!-- 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/stateless_session" /> -->
-<!-- 	<jee:jndi-lookup id="dataConfigFile"  jndi-name="stateless-session-data-config-file" /> -->
-
-<!-- 	<util:properties id="dataConfigFile" location="classpath:stateless-session.properties" /> -->
 	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-<!--         <property name="location" value="file:#{dataConfigFile}" /> -->
  		<property name="location" value="classpath:stateless-session.properties" />
         <property name="ignoreUnresolvablePlaceholders" value="false"/>
         <property name="nullValue" value="@null" />

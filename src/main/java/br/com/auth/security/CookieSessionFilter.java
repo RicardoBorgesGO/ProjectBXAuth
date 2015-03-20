@@ -47,8 +47,17 @@ public class CookieSessionFilter extends AbstractPreAuthenticatedProcessingFilte
 			SecurityContextHolder.setContext(securityContext);
 			return session;
 		}
-
 		return new UserSession();
+	}
+	
+	private Cookie getSessionCookie(Cookie[] cookies, String cookieName) {
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals(cookieName)) {
+				return cookie;
+			}
+		}
+		
+		return null;
 	}
 
 	@Override
@@ -68,9 +77,9 @@ public class CookieSessionFilter extends AbstractPreAuthenticatedProcessingFilte
 			if (path.indexOf("login")>=0 || path.indexOf("logout")>=0){
 				return SecurityContextHolder.createEmptyContext();
 			}
-
+			
 			Cookie[] cookies = httpRequest.getCookies();
-
+			
 			Cookie sessionCookie = null;
 			Cookie signCookie = null;
 

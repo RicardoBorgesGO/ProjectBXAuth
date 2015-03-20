@@ -66,7 +66,7 @@ public class SessionCookieInterceptor extends HandlerInterceptorAdapter {
 
 	public void persistSessionCookie(HttpServletResponse response, UserSession session) {
 		SessionCookieData sessionCookieData = (session!=null) ? session.generateSessionCookieData() : new SessionCookieData(0);
-
+		
 		String domain = defaultDomain;
 
 		Cookie sessionCookie = sessionCookieService.generateSessionCookie(sessionCookieData, domain);

@@ -16,8 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpServerErrorException;
 
+import br.com.auth.constant.ParamName;
 import br.com.auth.entity.Usuario;
 import br.com.auth.security.UserAuthentication;
 import br.com.auth.security.UserSession;
@@ -46,10 +48,10 @@ public class AuthenticationController {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "/authentication")
 	@SessionUpdate
-	public String login2(Usuario usuario) throws IOException{
-
+	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "/login")
+	public String login(Usuario usuario, @RequestParam(value = ParamName.URL) String url) throws IOException{
+		
 		if(StringUtils.isEmpty(usuario.getLogin()) || StringUtils.isEmpty(usuario.getPassword())){
 			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Missing login and password");
 		}
@@ -66,7 +68,7 @@ public class AuthenticationController {
 			throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED, "Invalid login or password");
 		}
 
-		return "index";
+		return "redirect:" + url;
 	}
 
 	/**
@@ -79,16 +81,18 @@ public class AuthenticationController {
 	public String landing(HttpServletRequest request, HttpServletResponse response){
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		Authentication authentication = securityContext.getAuthentication();
-
+		String url = request.getParameter(ParamName.URL);
+		
 		if (authentication instanceof UserAuthentication && authentication.isAuthenticated()){
 			logger.info("User(" + securityContext.getAuthentication().getPrincipal() + ") is logged in.");
-			return "index";
+			return "redirect:" + url;
 		}
 
 		logger.info("User(" + securityContext.getAuthentication().getPrincipal() + ") is redirected to login.");
-		return "login2";
+		
+		return "login";
 	}
-
+	
 	/**
 	 * This endpoint will return a login form view
 	 * @param request
@@ -97,13 +101,13 @@ public class AuthenticationController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = {"logout"})
 	@SessionUpdate
-	public String logout(HttpServletRequest request, HttpServletResponse response){
+	public String logout(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = ParamName.URL) String url){
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 
 		logger.info("Logging out user(" + securityContext.getAuthentication().getPrincipal()  + ").");
 
 		securityContext.setAuthentication(new UserAuthentication(null));
 
-		return "login";
+		return "redirect:" + url;
 	}
 }

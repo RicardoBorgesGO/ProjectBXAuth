@@ -28,12 +28,17 @@ public class SessionCookieService {
 
 		Cookie sessionCookie = new Cookie(SESSION_COOKIE_NAME, gson.toJson(cookieData));
 		sessionCookie.setPath("/");
-
+		
+		//TODO Arrumar uma forma do cookie ficar acessivel para qualquer aplicacao - Remover dominio
 		if (domain != null){
 			sessionCookie.setDomain(domain);
 		}
 
 		return sessionCookie;
+	}
+	
+	public void removeSessionCookie(Cookie sessionCookie) {
+		sessionCookie.setMaxAge(0);
 	}
 
 	public SessionCookieData getSessionCookieData(Cookie sessionCookie){
