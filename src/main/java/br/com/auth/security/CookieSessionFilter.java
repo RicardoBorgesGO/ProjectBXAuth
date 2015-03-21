@@ -50,15 +50,15 @@ public class CookieSessionFilter extends AbstractPreAuthenticatedProcessingFilte
 		return new UserSession();
 	}
 	
-	private Cookie getSessionCookie(Cookie[] cookies, String cookieName) {
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals(cookieName)) {
-				return cookie;
-			}
-		}
-		
-		return null;
-	}
+//	private Cookie getSessionCookie(Cookie[] cookies, String cookieName) {
+//		for (Cookie cookie : cookies) {
+//			if (cookie.getName().equals(cookieName)) {
+//				return cookie;
+//			}
+//		}
+//		
+//		return null;
+//	}
 
 	@Override
 	protected Object getPreAuthenticatedCredentials(HttpServletRequest request) {
