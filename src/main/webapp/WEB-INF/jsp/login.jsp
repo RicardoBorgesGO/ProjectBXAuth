@@ -13,16 +13,16 @@
 	<title>Login - SGO</title>
 	
 	<!-- Bootstrap Core CSS -->
-	<link href="/stateless-session//resources/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
 	
 	<!-- MetisMenu CSS -->
-	<link href="/stateless-session/resources/css/metisMenu.min.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/css/metisMenu.min.css" rel="stylesheet" />
 	
 	<!-- Custom CSS -->
-	<link href="/stateless-session/resources/css/sb-admin-2.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/resources/css/sb-admin-2.css" rel="stylesheet" />
 
 	<!-- Custom Fonts -->
-	<link href="/stateless-session/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,7 +41,7 @@
 </head>
 
 <body>
-	<form method="post" action="/stateless-session/auth/login?url=<%= request.getParameter("url") %>">
+	<form method="post" action="${pageContext.request.contextPath}/auth/login?url=<%= request.getParameter("url") %>">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
@@ -87,16 +87,16 @@
 	</form>
 
 	<!-- jQuery -->
-	<script src="/stateless-session/resources/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="/stateless-session/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="/stateless-session/resources/js/metisMenu.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/metisMenu.min.js"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script src="/stateless-session/resources/js/sb-admin-2.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.js"></script>
 
 </body>
 

@@ -82,6 +82,8 @@ public class CookieSessionFilter extends AbstractPreAuthenticatedProcessingFilte
 			
 			Cookie sessionCookie = null;
 			Cookie signCookie = null;
+			
+			System.err.println("Cookie stateless: " + cookies);
 
 			if (cookies != null) {
 				for (Cookie cookie : cookies) {

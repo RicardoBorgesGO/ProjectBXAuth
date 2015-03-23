@@ -51,7 +51,7 @@ public class AuthenticationController {
 	 */
 	@SessionUpdate
 	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "/login")
-	public String login(Usuario usuario, @RequestParam(value = ParamName.URL) String url, Model model) throws IOException{
+	public String login(Usuario usuario, @RequestParam(value = ParamName.URL, required = false) String url, Model model) throws IOException{
 		
 		if(StringUtils.isEmpty(usuario.getLogin()) || StringUtils.isEmpty(usuario.getPassword())){
 			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Missing login and password");
@@ -69,7 +69,10 @@ public class AuthenticationController {
 			model.addAttribute("ERROR_MESSAGE", "Login ou senha inválido");
 			return "login";
 		}
-
+		
+		if (url == null || url.equals("null"))
+			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Não há serviço cadastrado");
+			
 		return "redirect:" + url;
 	}
 
@@ -103,13 +106,13 @@ public class AuthenticationController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = {"logout"})
 	@SessionUpdate
-	public String logout(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = ParamName.URL) String url){
+	public String logout(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = ParamName.URL, required = false) String url){
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 
 		logger.info("Logging out user(" + securityContext.getAuthentication().getPrincipal()  + ").");
 
 		securityContext.setAuthentication(new UserAuthentication(null));
-
-		return "redirect:" + url;
+		
+		return "login" ;
 	}
 }
