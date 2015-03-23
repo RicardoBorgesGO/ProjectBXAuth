@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,7 +51,7 @@ public class AuthenticationController {
 	 */
 	@SessionUpdate
 	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "/login")
-	public String login(Usuario usuario, @RequestParam(value = ParamName.URL) String url) throws IOException{
+	public String login(Usuario usuario, @RequestParam(value = ParamName.URL) String url, Model model) throws IOException{
 		
 		if(StringUtils.isEmpty(usuario.getLogin()) || StringUtils.isEmpty(usuario.getPassword())){
 			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Missing login and password");
@@ -65,7 +66,8 @@ public class AuthenticationController {
 			userSession.setUser(user);
 			securityContext.setAuthentication(new UserAuthentication(userSession));
 		}else{
-			throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED, "Invalid login or password");
+			model.addAttribute("ERROR_MESSAGE", "Login ou senha inválido");
+			return "login";
 		}
 
 		return "redirect:" + url;
