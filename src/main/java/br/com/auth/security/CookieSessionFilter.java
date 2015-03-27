@@ -50,16 +50,6 @@ public class CookieSessionFilter extends AbstractPreAuthenticatedProcessingFilte
 		return new UserSession();
 	}
 	
-//	private Cookie getSessionCookie(Cookie[] cookies, String cookieName) {
-//		for (Cookie cookie : cookies) {
-//			if (cookie.getName().equals(cookieName)) {
-//				return cookie;
-//			}
-//		}
-//		
-//		return null;
-//	}
-
 	@Override
 	protected Object getPreAuthenticatedCredentials(HttpServletRequest request) {
 		String login = request.getParameter(ParamName.LOGIN);
@@ -83,8 +73,6 @@ public class CookieSessionFilter extends AbstractPreAuthenticatedProcessingFilte
 			Cookie sessionCookie = null;
 			Cookie signCookie = null;
 			
-			System.err.println("Cookie stateless: " + cookies);
-
 			if (cookies != null) {
 				for (Cookie cookie : cookies) {
 					if (cookie.getName().equals(SessionCookieService.SESSION_COOKIE_NAME)) {

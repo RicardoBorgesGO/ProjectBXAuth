@@ -28,12 +28,11 @@ public class SessionCookieService {
 
 		Cookie sessionCookie = new Cookie(SESSION_COOKIE_NAME, gson.toJson(cookieData));
 		sessionCookie.setPath("/");
-		sessionCookie.setMaxAge(sessionTimeOut * 60000);
 		
 		//Para funcionar no chrome nao deve setar o domain
-//		if (domain != null){
-//			sessionCookie.setDomain(domain);
-//		}
+		if (domain != null){
+			sessionCookie.setDomain(domain);
+		}
 
 		return sessionCookie;
 	}
