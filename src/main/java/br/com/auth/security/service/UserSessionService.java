@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.auth.dao.impl.UsuarioDAOImpl;
-import br.com.auth.entity.Usuario;
 import br.com.auth.security.SessionCookieData;
 import br.com.auth.security.UserSession;
+import br.com.infra.commons.entity.Usuario;
 
 @Service
 @Transactional

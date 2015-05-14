@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import br.com.auth.constant.RoleEnum;
+import br.com.infra.commons.constant.RoleEnum;
 
 public class UserAuthentication implements Authentication {
 

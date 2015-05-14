@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.auth.dao.UsuarioDAO;
+import br.com.infra.commons.entity.Usuario;
 import br.com.medical.proxy.client.IClientMedicalProxy;
 import br.com.medical.proxy.client.impl.ClientMedicalProxy;
 
@@ -20,6 +21,16 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public boolean consultaUsuario(br.com.infra.commons.entity.Usuario usuario) {
 		return medicalProxy.consultaUsuario(usuario);
+	}
+
+	@Override
+	public Usuario getUser(String userName) {
+		return medicalProxy.consultaUsuarioPorLogin(userName);
+	}
+
+	@Override
+	public Usuario getUser(int userId) {
+		return medicalProxy.consultaUsuarioPorId(userId);
 	}
 	
 //	@SuppressWarnings("unchecked")
