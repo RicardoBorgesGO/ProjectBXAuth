@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.auth.dao.impl.UsuarioDAOImpl;
-import br.com.auth.entity.Usuario;
+import br.com.infra.commons.entity.Usuario;
 
 
 @Service
@@ -15,27 +15,35 @@ public class AuthenticationService {
 //	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	UsuarioDAOImpl userDao;
-
+	private UsuarioDAOImpl userDao;
+	
 	public Usuario login(String login, String password) {
-		boolean isPasswordValid = false;
-		Usuario user = userDao.getUser(login);
-		if(user!=null) {
+//		boolean isPasswordValid = false;
+//		Usuario user = userDao.getUser(login);
+		Usuario user = new Usuario();
+		user.setLogin(login);
+		user.setSenha(password);
+		
+		boolean userExist = userDao.consultaUsuario(user);
+		
+		if(!userExist) {
+			user = null;
 //			try {
-				isPasswordValid = user.getPassword().equals(password);
+//				isPasswordValid = user.getPassword().equals(password);
 
 				//TODO transformar para sha1
 //				isPasswordValid = user.getPassword().equals(SecurityUtil.hashPassword(password, user.getSalt()));
 //			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
 //				logger.error("Error authenticating, " + login, e);
 //			}
-		}
-
-		if(user!=null && !isPasswordValid) {
-			user=null;
-		}else if(user!=null && isPasswordValid) {
+		} else {
 			user.getUserRoles();
 		}
+
+//		if(user!=null && !isPasswordValid) {
+//			user=null;
+//		}else if(user!=null && isPasswordValid) {
+//		}
 
 		return user;
 	}

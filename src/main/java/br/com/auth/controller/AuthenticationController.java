@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpServerErrorException;
 
 import br.com.auth.constant.ParamName;
-import br.com.auth.entity.Usuario;
 import br.com.auth.security.UserAuthentication;
 import br.com.auth.security.UserSession;
 import br.com.auth.security.annotation.SessionUpdate;
 import br.com.auth.security.service.AuthenticationService;
 import br.com.auth.security.service.SessionCookieService;
+import br.com.infra.commons.entity.Usuario;
 
 @Controller
 @RequestMapping("/auth")
@@ -53,13 +53,13 @@ public class AuthenticationController {
 	@RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = "/login")
 	public String login(Usuario usuario, @RequestParam(value = ParamName.URL, required = false) String url, Model model) throws IOException{
 		
-		if(StringUtils.isEmpty(usuario.getLogin()) || StringUtils.isEmpty(usuario.getPassword())){
+		if(StringUtils.isEmpty(usuario.getLogin()) || StringUtils.isEmpty(usuario.getSenha())){
 			throw new HttpServerErrorException(HttpStatus.BAD_REQUEST, "Missing login and password");
 		}
 
 		logger.info("login user(" + usuario.getLogin() + ").");
 
-		Usuario user = authService.login(usuario.getLogin(), usuario.getPassword());
+		Usuario user = authService.login(usuario.getLogin(), usuario.getSenha());
 		if(user!=null){
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			UserSession userSession = new UserSession();

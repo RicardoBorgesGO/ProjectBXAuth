@@ -1,6 +1,6 @@
 package br.com.auth.security;
 
-import br.com.auth.entity.Usuario;
+import br.com.infra.commons.entity.Usuario;
 
 public class UserSession {
 
