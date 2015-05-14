@@ -68,7 +68,7 @@
 											<span class="input-group-addon" id="basic-addon1"> <i
 												class="fa fa-lock"></i>
 											</span>
-											<input type="password" id="senha" name="password" placeholder="Senha" required="required" class="form-control" />
+											<input type="password" id="senha" name="senha" placeholder="Senha" required="required" class="form-control" />
 										</div>
 									</div>
 

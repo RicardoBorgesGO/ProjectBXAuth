@@ -59,7 +59,7 @@ public class AuthenticationController {
 
 		logger.info("login user(" + usuario.getLogin() + ").");
 
-		Usuario user = authService.login(usuario.getLogin(), usuario.getSenha());
+		Usuario user = authService.login(usuario);
 		if(user!=null){
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			UserSession userSession = new UserSession();
