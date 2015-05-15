@@ -20,4 +20,5 @@ public interface UsuarioDAO {
 	 * @return
 	 */
 	Usuario getUser(int userId);
+	
 }

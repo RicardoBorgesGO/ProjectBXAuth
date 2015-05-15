@@ -7,7 +7,7 @@ public class UserSession {
 	private Usuario user;
 
 	public SessionCookieData generateSessionCookieData(){
-		return new SessionCookieData(user.getId());
+		return new SessionCookieData(user.getId(), user.getTenanty());
 	}
 
 	public Usuario getUser() {

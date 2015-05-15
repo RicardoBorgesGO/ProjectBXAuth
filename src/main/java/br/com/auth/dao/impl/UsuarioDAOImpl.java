@@ -12,8 +12,6 @@ import br.com.medical.proxy.client.impl.ClientMedicalProxy;
 @Transactional
 public class UsuarioDAOImpl implements UsuarioDAO {
 
-//	@PersistenceContext
-//	private EntityManager entityManager;
 	
 	//TODO Injetar
 	private IClientMedicalProxy medicalProxy = new ClientMedicalProxy();
@@ -32,7 +30,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	public Usuario getUser(int userId) {
 		return medicalProxy.consultaUsuarioPorId(userId);
 	}
-	
+
 //	@SuppressWarnings("unchecked")
 	// Query.getResultList, does not support generic
 //	public Usuario getUser(String userName) {

@@ -2,12 +2,13 @@ package br.com.auth.security;
 
 import java.util.Date;
 
-
 public class SessionCookieData {
 
 	private Integer userId;
 
 	private Date timeStamp;
+
+	private String tenant;
 
 	public SessionCookieData() {
 		this(0);
@@ -19,6 +20,13 @@ public class SessionCookieData {
 		this.timeStamp = new Date();
 	}
 
+	public SessionCookieData(Integer userId, String tenant) {
+		super();
+		this.userId = userId;
+		this.timeStamp = new Date();
+		this.tenant = tenant;
+	}
+	
 	public Integer getUserId() {
 		return userId;
 	}
@@ -26,4 +34,13 @@ public class SessionCookieData {
 	public Date getTimeStamp() {
 		return timeStamp;
 	}
+
+	public String getTenant() {
+		return tenant;
+	}
+
+	public void setTenant(String tenant) {
+		this.tenant = tenant;
+	}
+
 }
